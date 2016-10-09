@@ -25,11 +25,7 @@ public class View extends JFrame {
         this.controller = controller;
     }
 
-    public void completed(int level){
-        update();
-        JOptionPane.showMessageDialog(null, level + "Completed", "Level", JOptionPane.INFORMATION_MESSAGE);
-        controller.startNextLevel();
-    }
+
 
     public void init() {
         field = new Field(this);

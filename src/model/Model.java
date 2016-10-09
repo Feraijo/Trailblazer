@@ -23,10 +23,10 @@ public class Model {
 
         Player player = gameObjects.getPlayer();
 
-        if (checkWallCollision(player, direction)) {
+        if (checkMountainCollision(player, direction)) {
             return;
         }
-        if (checkBoxCollision(direction)){
+        if (checkRiverCollision(direction)){
             return;
         }
 
@@ -43,11 +43,23 @@ public class Model {
                 break;
             case S:
                 player.move(0, sellSize);
+                break;
+            case NW:
+                player.move(-sellSize, -sellSize);
+                break;
+            case NE:
+                player.move(sellSize, -sellSize);
+                break;
+            case SE:
+                player.move(sellSize, sellSize);
+                break;
+            case SW:
+                player.move(-sellSize, sellSize);
         }
 
     }
 
-    public boolean checkWallCollision(CollisionObject gameObject, Direction direction){
+    public boolean checkMountainCollision(CollisionObject gameObject, Direction direction){
         for (Mountain mountain : gameObjects.getMountains()){
 
             if(gameObject.isCollision(mountain, direction)){
@@ -59,12 +71,12 @@ public class Model {
 
 
 
-    public boolean checkBoxCollision(Direction direction){
+    public boolean checkRiverCollision(Direction direction){
 
         Player player = gameObjects.getPlayer();
 
         // найдем во что уперся игрок
-        GameObject  stoped = null;
+        GameObject stoped = null;
         for (GameObject gameObject: gameObjects.getAll()){
             if (!(gameObject instanceof Player)&&!(gameObject instanceof Hill) && player.isCollision(gameObject, direction)){
                 stoped = gameObject;
@@ -76,7 +88,7 @@ public class Model {
         }
         if (stoped instanceof River){
             River stopedRiver = (River)stoped;
-            if (checkWallCollision(stopedRiver, direction)){
+            if (checkMountainCollision(stopedRiver, direction)){
                 return true;
             }
             for (River river : gameObjects.getRivers()){
@@ -84,31 +96,13 @@ public class Model {
                     return true;
                 }
             }
-            switch (direction)
-            {
-                case W:
-                    stopedRiver.move(-FIELD_SELL_SIZE, 0);
-                    break;
-                case E:
-                    stopedRiver.move(FIELD_SELL_SIZE, 0);
-                    break;
-                case N:
-                    stopedRiver.move(0, -FIELD_SELL_SIZE);
-                    break;
-                case S:
-                    stopedRiver.move(0, FIELD_SELL_SIZE);
-            }
+
         }
         return false;
 
     }
 
 
-
-    public void startNextLevel(){
-        currentLevel++;
-        restartLevel();
-    }
     public void restart() {
         restartLevel();
     }

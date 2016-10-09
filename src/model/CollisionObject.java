@@ -5,17 +5,13 @@ package model;
  */
 public abstract class CollisionObject extends GameObject
 {
+
     public CollisionObject(int x, int y)
     {
         super(x, y);
     }
 
-    /*
-Этот метод должен возвращаться true, если при перемещении текущего
-объекта в направлении direction на FIELD_SELL_SIZE произойдет
-столкновение с объектом gameObject, переданным в качестве параметра.
-Иначе – возвращать false. Столкновением считать совпадение координат x и y.
-     */
+
     public boolean isCollision(GameObject gameObject, Direction direction){
         boolean result = false;
         switch (direction)

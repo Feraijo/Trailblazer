@@ -33,7 +33,12 @@ public class LevelLoader
         int y0 = cellSize / 2;
 
         player = new Player(x0 + cellSize, y0 + 500);
-
+        River river = new River(20, 540, 0);
+        int mergeX = river.size()/3;
+        int mergeY = river.getWaterY(mergeX);
+        River river1 = new River(mergeX, mergeY, 10);
+        rivers.add(river);
+        rivers.add(river1);
 
         return new GameObjects(mountains, rivers, hills, player);
     }

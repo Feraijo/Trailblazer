@@ -44,16 +44,7 @@ public class Controller implements EventListener {
         view.update();
     }
 
-    @Override
-    public void startNextLevel() {
-        model.startNextLevel();
-        view.update();
-    }
 
-    @Override
-    public void levelCompleted(int level) {
-        view.completed(level);
-    }
 
     @Override
     public void interact() {

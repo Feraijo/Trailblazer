@@ -1,12 +1,14 @@
 package model;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by Feraijo on 06.10.2016.
  */
 public abstract class GameObject
 {
+    protected Random random;
     private int x;
     private int y;
     private int width;
@@ -19,6 +21,7 @@ public abstract class GameObject
         this.y = y;
         width = Model.FIELD_SELL_SIZE;
         height = Model.FIELD_SELL_SIZE;
+        random = new Random();
     }
 
     public GameObject(int x, int y, int width, int height)
